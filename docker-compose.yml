@@ -1,0 +1,9 @@
+version: '3'
+services:
+  python3:
+    restart: always
+    build: ./docker/python
+    container_name: 'active_window_demon'
+    tty: true
+    volumes:
+      - ./server:/var/www/html
