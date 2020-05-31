@@ -36,5 +36,8 @@ print(sys.platform)
 t = range(1,100)
 for i in t:
     time.sleep(3)
+    # Macのアクティブモニタを取得することができる
     activeAppName = NSWorkspace.sharedWorkspace().activeApplication()['NSApplicationName']
+    # 取得したアクティブモニタを利用して例えば, ChromeならURLファイルならファイルパスを使用してBluetoothなどでそのファイルを転送するプログラムを記述
+    # あとはPC上で動いているプログラムとスマートウォッチ上で動かすファイルの組み込み的なことをする
     print(activeAppName)
