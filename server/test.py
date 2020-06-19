@@ -16,6 +16,8 @@ import subprocess
 import sys
 from AppKit import NSWorkspace
 import time
+from Foundation import *
+import applescript
 
 os.getpid()
 p = psutil.Process(os.getpid())
@@ -41,3 +43,5 @@ for i in t:
     # 取得したアクティブモニタを利用して例えば, ChromeならURLファイルならファイルパスを使用してBluetoothなどでそのファイルを転送するプログラムを記述
     # あとはPC上で動いているプログラムとスマートウォッチ上で動かすファイルの組み込み的なことをする
     print(activeAppName)
+    r = applescript.tell.app("Terminal", 'do script "osascript -e \'tell app "google chrome" to get the url of the active tab of window 1\'"')
+    print(r)
