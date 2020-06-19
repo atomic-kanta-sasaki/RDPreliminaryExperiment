@@ -6,6 +6,7 @@ SHELL ["/bin/bash", "-c"]
 ENV DEBCONF_NOWARNINGS yes
 RUN apt-get update && apt-get -y install locales && \
     localedef -f UTF-8 -i ja_JP ja_JP.UTF-8
+RUN apt install -y sudo
 
 RUN apt-get update && apt-get install -y \
     xdotool \
@@ -19,3 +20,4 @@ RUN pip install --upgrade pip
 RUN pip install --upgrade setuptools
 RUN apt-get install -y vim less
 RUN pip install rssi
+RUN pip install numpy
