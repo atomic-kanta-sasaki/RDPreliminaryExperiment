@@ -3,11 +3,16 @@ import chromedriver_binary             # パスを通すためのコード
 import time
 from selenium.webdriver.chrome.options import Options
 
+import serialConnect
+
 options = Options()
 # 現在開いてるChromeにたいしてSeleniumを当てるためのオプション
 options.add_experimental_option("debuggerAddress", "127.0.0.1:9222")
 # 上記のオプションを付与したWebDriverの作成
 driver = webdriver.Chrome(options=options)
+
+# シリアル通信で受け取ったURLをChromeで開く
+openUrl(serialConnect.serial_read)
 
 """
 シリアル通信によって送られてきたURLをChromeで開く

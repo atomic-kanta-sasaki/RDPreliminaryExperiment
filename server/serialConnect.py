@@ -1,5 +1,6 @@
 import serial
 import time
+import ChromeWindow
 
 ser = serial.Serial('COM8', 9600, timeout=None)
 
@@ -22,11 +23,12 @@ def serial_read():
 """
 
 
-def serial_send():
+def serial_send(url):
     time.sleep(10)
-    string = "hello windows"
-    string += "\r\n"
-    string = string.encode()
-    ser.write(string)
+    url = url.encode()
+    ser.write(url)
 
     ser.close()
+
+
+serial_send(ChromeWindow.getCurrentUrl)
