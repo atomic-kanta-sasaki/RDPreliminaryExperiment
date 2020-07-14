@@ -3,33 +3,31 @@ import chromedriver_binary             # パスを通すためのコード
 import time
 from selenium.webdriver.chrome.options import Options
 
-
-# # time.sleep(10)
-# # ChromeDriverのパスを引数に指定しChromeを起動
-# driver = webdriver.Chrome()
-# # 指定したURLに遷移
-# driver.get("https://www.google.co.jp")
-
-
-# def getCurrentUrl():
-
-#     cur_url = driver.current_url
-#     # カレントページのURLを表示
-#     print(cur_url)
-
-
-# input = input()
-# # カレントページのURLを取得
-# if input != "":
-#     print("入っては来ている")
-#     getCurrentUrl()
-# time.sleep(10)
 options = Options()
+# 現在開いてるChromeにたいしてSeleniumを当てるためのオプション
 options.add_experimental_option("debuggerAddress", "127.0.0.1:9222")
-
+# 上記のオプションを付与したWebDriverの作成
 driver = webdriver.Chrome(options=options)
 
-# driver.get('https://teratail.com/questions/277418')
+"""
+シリアル通信によって送られてきたURLをChromeで開く
+
+@param string url
+"""
 
 
-print(driver.current_url)
+def openUrl(url):
+    driver.get(url)
+
+
+"""
+現在アクティブになっているChromeのURLのTabを取得する
+
+@param null
+@return string active_url
+"""
+
+
+def getCurrentUrl():
+    active_url = driver.current_url
+    print(active_url)
