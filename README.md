@@ -13,7 +13,7 @@ dockerを使用するとPCがLinuxだと判定されてしまい, 使用した�
 "C:\Program Files (x86)\Google\Chrome\Application\chrome.exe" -remote-debugging-port=9222 --user-data-dir=C:\Temp_ForChrome <br />
 ```
  このコマンドを使用しChromeを起動する <br />
- このコマンドを使用することですでに開いているChromeに対してSeleniumを使用して操作を行うことができる.<br />
+ このコマンドを使用することですでに開いているChromeに対してSeleniumを使用して操作を行うことができる.
  これを使用しないとChromeDriverを起動するたびに新しいブラウザを開いてしまうため非常に厄介なことになる.
 
 dockerコンテナに入る
