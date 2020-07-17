@@ -32,3 +32,12 @@ def serial_send(url):
 
 
 serial_send(ChromeWindow.getCurrentUrl)
+
+beContinue = True
+while beContinue == True:
+    recive_data = serial_read()
+    if recive_data == 1:
+        send_data = ChromeWindow.getCurrentUrl()
+        serial_send(send_data)
+    else:
+        ChromeWindow.openUrl(recive_data)
