@@ -30,14 +30,19 @@ def serial_send(url):
 
     ser.close()
 
-
 serial_send(ChromeWindow.getCurrentUrl)
+
 
 beContinue = True
 while beContinue == True:
     recive_data = serial_read()
-    if recive_data == 1:
+    print("send data")
+    print(recive_data)
+    if recive_data != "":
+        print("get chrome link")
         send_data = ChromeWindow.getCurrentUrl()
+        print("link")
+        print(send_data)
         serial_send(send_data)
     else:
         ChromeWindow.openUrl(recive_data)
