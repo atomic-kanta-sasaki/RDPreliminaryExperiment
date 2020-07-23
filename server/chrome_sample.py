@@ -55,19 +55,39 @@ def serial_send(url):
 
     ser.close()
 
+"""
+シリアル通信で送られてきた文字列をノイズのない形に整形する
+"""
+def sentenceShaping(text):
+    shaping_text = text.strip().decode('utf-8')
+    print("整形後データ")
+    print(shaping_text)
+    return shaping_text
+
+print("port is open")
 beContinue = True
 while beContinue == True:
     print("loop start")
     recive_data = serial_read()
-    print("send data")
-    print(recive_data)
+    recive_data = sentenceShaping(recive_data)
     if recive_data != "":
         print("get chrome link")
         send_data = getCurrentUrl()
-        print("link")
-        print(send_data)
         # serial_send(send_data)
     else:
         openUrl(recive_data)
 ser.close()
 print("-------------------------------------")
+
+"""
+port is open
+loop start
+b'1\r\n'
+send data
+b'1\r\n'
+get chrome link
+https://github.co.jp/
+link
+https://github.co.jp/
+loop start
+"""
