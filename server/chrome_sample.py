@@ -41,19 +41,13 @@ def getCurrentUrl():
 def serial_read():
     line = ser.readline(10000)
     print(line)
-    ser.close()
     return line
-
 
 """
 シリアル通信を用いてデータを送信する
 """
 def serial_send(url):
-    time.sleep(10)
-    url = url.encode()
     ser.write(url)
-
-    ser.close()
 
 """
 シリアル通信で送られてきた文字列をノイズのない形に整形する
@@ -70,24 +64,13 @@ while beContinue == True:
     print("loop start")
     recive_data = serial_read()
     recive_data = sentenceShaping(recive_data)
-    if recive_data != "":
+    if recive_data == "hello":
         print("get chrome link")
         send_data = getCurrentUrl()
-        # serial_send(send_data)
+        send_data = str(send_data) + "\r\n"
+        serial_send(send_data.encode('utf-8'))
     else:
+        print("open chrome")
         openUrl(recive_data)
 ser.close()
 print("-------------------------------------")
-
-"""
-port is open
-loop start
-b'1\r\n'
-send data
-b'1\r\n'
-get chrome link
-https://github.co.jp/
-link
-https://github.co.jp/
-loop start
-"""
