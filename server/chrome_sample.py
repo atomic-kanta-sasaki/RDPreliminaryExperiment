@@ -4,14 +4,12 @@ import time
 from selenium.webdriver.chrome.options import Options
 import serial
 
-ser = serial.Serial('COM8', 9600, timeout=None)
-
+ser = serial.Serial('COM9', 9600, timeout=None)
 options = Options()
 # 現在開いてるChromeにたいしてSeleniumを当てるためのオプション
 options.add_experimental_option("debuggerAddress", "127.0.0.1:9222")
 # 上記のオプションを付与したWebDriverの作成
 driver = webdriver.Chrome(options=options)
-
 """
 シリアル通信によって送られてきたURLをChromeで開く
 
@@ -58,13 +56,27 @@ def sentenceShaping(text):
     print(shaping_text)
     return shaping_text
 
+"""
+取得した値がフラグか判断する
+フラグの場合は数値型に変換する
+条件：配列長さが3以下だったらフラグ、そうでなければURL
+
+@param recive_data
+"""
+def checkReciveData(recive_data):
+    if len(recive_data) <= 3:
+        return int(recive_data)
+    else:
+        return recive_data
+
 print("port is open")
 beContinue = True
 while beContinue == True:
     print("loop start")
     recive_data = serial_read()
     recive_data = sentenceShaping(recive_data)
-    if recive_data == "hello":
+
+    if checkReciveData(recive_data) == 1:
         print("get chrome link")
         send_data = getCurrentUrl()
         send_data = str(send_data) + "\r\n"
